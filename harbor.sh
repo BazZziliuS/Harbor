@@ -109,7 +109,5 @@ $ROOTFS_DIR/usr/local/bin/proot \
 --cwd=/root \
 --bind=/proc \
 --bind=/dev \
---bind=/sys \
 --bind=/tmp \
---bind=/var/run \
 /bin/sh
