@@ -56,6 +56,15 @@ if [ ! -e $ROOTFS_DIR/.installed ]; then
     chmod 755 $ROOTFS_DIR/usr/local/bin/proot $ROOTFS_DIR/usr/local/bin/gotty
 fi
 
+# Install additional packages: OpenSSH, Python3, and Node.js with npm and other.
+if [ -e $ROOTFS_DIR/.installed ]; then
+    # Enter the Alpine root file system.
+    chroot $ROOTFS_DIR /bin/sh -c '
+        apk update
+        apk add openssh python3 nodejs npm openrc poetry
+    '
+fi
+
 # Clean-up after installation complete & finish up.
 if [ ! -e $ROOTFS_DIR/.installed ]; then
     # Add DNS Resolver nameservers to resolv.conf.
